@@ -25,6 +25,7 @@ class SkillsManager:
                 raise ValueError(f"Skill with name '{skill.name}' already exists.")
 
         self.skills.extend(skills)
+        self.used_skills.extend([skill.name for skill in skills])
 
     def skill_exists(self, name: str):
         """
@@ -60,7 +61,7 @@ class SkillsManager:
         return next((skill for skill in self.skills if skill.name == name), None)
 
     def add_used_skill(self, skill: str):
-        if self.skill_exists(skill):
+        if self.skill_exists(skill) and skill not in self.used_skills:
             self.used_skills.append(skill)
 
     def __str__(self) -> str:

@@ -19,11 +19,12 @@ import pandas as pd
 {% include 'shared/vectordb_docs.tmpl' with context %}
 {{ context.memory.get_last_message() }}
 
-Variable `dfs: list[pd.DataFrame]` is already declared.
-
 At the end, declare "result" variable as a dictionary of type and value.
-{% if viz_lib %}
-If you are asked to plot a chart, use "{{viz_lib}}" for charts, save as png.
-{% endif %}
+If you are asked to plot a chart, return a JSON object defining a 'highcharts' plot.
+Remember there can't be any NaN in the highcharts JSON.
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+Do not hardcode any data!
+If you can't answer the question using `dfs` declare a "result" variable with string response, explaining why you can't answer it.
 
 Generate python code and return full updated code:

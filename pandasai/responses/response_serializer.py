@@ -28,19 +28,9 @@ class ResponseSerializer:
             return {"type": result["type"], "value": df_dict}
 
         elif result["type"] == "plot" and isinstance(result["value"], str):
-            # check if already in base64 str return
-            if "data:image/png;base64" in result["value"]:
-                return result
-
-            with open(result["value"], "rb") as image_file:
-                image_data = image_file.read()
-            # Encode the image data to Base64
-            base64_image = (
-                f"data:image/png;base64,{base64.b64encode(image_data).decode()}"
-            )
             return {
                 "type": result["type"],
-                "value": base64_image,
+                "value": result["value"],
             }
         else:
             return result
